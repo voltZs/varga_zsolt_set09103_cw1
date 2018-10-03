@@ -6,7 +6,6 @@ import random
 app = Flask(__name__)
 pokedata = PokeData()
 
-
 # ROUTE HANDLING
 @app.route('/')
 def index():
@@ -18,7 +17,8 @@ def search(search_word):
 
 @app.route('/pokedex')
 def pokedex():
-    return "Pokedex page"
+    data = pokedata.getPokedex()
+    return render_template('pokedex.html', pokemon_list = data)
 
 @app.route('/pokemon/random')
 def random_pokemon():
@@ -38,16 +38,18 @@ def pokemon(name):
 
 @app.route('/types')
 def poketypes():
-    return "Types page"
+    types = pokedata.getTypes()
+    return render_template("types.html", poketypes = types)
 
 @app.route('/types/<type>')
 def poketype(type):
-    #this should make use of the pokedex template and add a short description to it
-    return "One type of pokemon page: {}".format(type)
+    # making use of the pokedex template with one extra variable - the type (filter)
+    data = pokedata.getPokedexOfType(type)
+    return render_template('typed_pokedex.html', pokemon_list = data, type = type)
 
 @app.route('/kanto')
 def kanto():
-    return "Page for Kanto"
+    return render_template("kanto.html")
 
 if __name__ == '__main__':
 	app.run(debug=True)

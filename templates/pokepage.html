@@ -1,64 +1,35 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/pokedescr.css') }}">
-  </head>
-  <body>
-    <div class="mainContainer">
-      <div class="regulatoryTopDiv">
+{% extends "base.html"%}
+
+{% block meta_title %}
+  <title>{{pokemon['name']}}</title>
+{% endblock %}
+
+{% block main_page %}
+  <div class="mainPage leftPage">
+    <div class="sideBySide">
+      <div class="leftContainer">
+        <img src="/static/images/{{pokemon['image']}}" class="whiteBack" width="200" alt="">
       </div>
-      <div class="sideBySide">
 
-        <div class="mainPage leftPage">
-          <div class="sideBySide">
-            <div class="leftContainer">
-              <img src="/static/images/{{pokemon['image']}}" class="whiteBack" width="200" alt="">
-            </div>
-
-            <div class="rightContainer" id="rgc">
-              <h1>{{pokemon['name']}}</h1>
-              <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
-              <h2>Type: {{pokemon['type']}}</h2>
-              <h2>Height: {{pokemon['height']/100}} m</h2>
-              <h2>Weight: {{pokemon['weight']}} kg</h2>
-            </div>
-          </div>
-          <h2>Description</h2>
-          <p>{{pokemon['description']}}</p>
-          <h2>Evolutions</h2>
-          {%for evolution in pokemon['evolutions'] %}
-            <a href="/pokemon/{{evolution}}"> {{evolution}}</a>
-          {% endfor %}
+      <div class="rightContainer" id="rgc">
+        <h1>{{pokemon['name']}}</h1>
+        <a href="/pokedex">
+          <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
+        </a>
+        {% for type in pokemon['type'] %}
+        <div class="typeLabel">
+          {{type}}
         </div>
-
-        <div class="rightBar rightPage">
-          <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
-          <input type="text" name="" value="" placeholder="Search pokemon">
-          <a href="/pokemon/random">
-            <div class="">
-              Random Pokémon
-            </div>
-          </a>
-          <a href="/pokedex">
-            <div class="">
-              Browse Pokédex
-            </div></a>
-          <a href="/types">
-            <div class="">
-              Poké Types
-            </div></a>
-          <a href="/kanto">
-            <div class="">
-              About Kanto
-            </div></a>
-        </div>
-
+        {% endfor %}
+        <h4>Height: {{pokemon['height']/100}} m</h4>
+        <h4>Weight: {{pokemon['weight']}} kg</h4>
       </div>
     </div>
-
-
-
-  </body>
-</html>
+    <h2>Description</h2>
+    <p>{{pokemon['description']}}</p>
+    <h2>Evolutions</h2>
+    {%for evolution in pokemon['evolutions'] %}
+      <a href="/pokemon/{{evolution}}"> {{evolution}}</a>
+    {% endfor %}
+  </div>
+{% endblock %}

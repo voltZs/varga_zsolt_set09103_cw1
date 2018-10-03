@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block meta_title %}
+    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/pokedescr.css') }}">
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="regulatoryTopDiv">
+      </div>
+      <div class="sideBySide">
+
+        {% block main_page %}
+        {% endblock %}
+
+        <div class="rightBar rightPage">
+          <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
+          <input type="text" name="" value="" placeholder="Search for pokémon">
+          <a href="/pokedex">
+            <div class="">
+              Browse Pokédex
+            </div>
+          </a>
+          <a href="/pokemon/random">
+            <div class="">
+              Random Pokémon
+            </div>
+          </a>
+          <a href="/types">
+            <div class="">
+              Poké Types
+            </div>
+          </a>
+          <a href="/kanto">
+            <div class="">
+              About Kanto
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

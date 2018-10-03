@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+  <title>Pokédex</title>
+{% endblock %}
+
+{% block main_page %}
+  <div class="mainPage leftPage">
+    {% block typed_pokedex_info %}
+    {% endblock %}
+    {% for dex_number in pokemon_list %}
+    <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
+      <div class="dexTile">
+        <img src="/static/sprites/{{pokemon_list[dex_number]['sprite']}}" width="20" alt="">
+        <div class="dexLabel">
+          #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
+        </div>
+        <div class="dexLabel">
+          {{pokemon_list[dex_number]['name']}}
+        </div>
+
+      </div>
+    </a>
+    {% endfor %}
+
+  </div>
+{% endblock %}

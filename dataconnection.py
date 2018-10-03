@@ -12,6 +12,31 @@ class PokeData():
         for item in data:
             if name.lower() in data[item]['name'].lower():
                 return data[item]["dexnum"]
+
+    def getTypes(self):
+        with open("pokemons.json", "r") as read_file:
+            data = json.load(read_file)
+        types = []
+        for item in data:
+            for type in data[item]["type"]:
+                if type not in types:
+                    types.append(type)
+        return types
+
+    def getPokedex(self):
+        with open("pokemons.json", "r") as read_file:
+            data = json.load(read_file)
+        return data
+    
+    def getPokedexOfType(self, type):
+        with open("pokemons.json", "r") as read_file:
+            data = json.load(read_file)
+        data_of_type = {}
+        for item in data:
+            if type in data[item]['type'] :
+                data_of_type[item]=data[item]
+        return data_of_type
+
     def getPokeByNum(self,num):
         with open("pokemons.json", "r") as read_file:
             data = json.load(read_file)
