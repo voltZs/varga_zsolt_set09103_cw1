@@ -11,6 +11,11 @@ pokedata = PokeData()
 def index():
     return 'Index page'
 
+@app.route('/search')
+def create_search_url():
+    searched_phrase = request.args.get('search')
+    return redirect("/search/{}".format(searched_phrase))
+
 @app.route('/search/<search_word>')
 def search(search_word):
     return 'Search page. Searched word: {}'.format(search_word)

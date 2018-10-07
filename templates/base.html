@@ -4,10 +4,18 @@
     <meta charset="utf-8">
     {% block meta_title %}
     {% endblock %}
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/Nunito-Black.ttf')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/Nunito-Bold.ttf')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fonts/Nunito-Regular.ttf')}}">
+
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/pokedescr.css') }}">
   </head>
   <body>
+
     <div class="mainContainer">
+      <div class="borderTrial1"></div>
+      <div class="borderTrial2"></div>
+      <div class="borderTrial3"></div>
       <div class="regulatoryTopDiv">
       </div>
       <div class="sideBySide">
@@ -17,30 +25,36 @@
 
         <div class="rightBar rightPage">
           <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
-          <input type="text" name="" value="" placeholder="Search for pokémon">
           <a href="/pokedex">
-            <div class="">
-              Browse Pokédex
+            <div class="LabelHolder rightBarButton">
+              Pokédex
             </div>
           </a>
           <a href="/pokemon/random">
-            <div class="">
-              Random Pokémon
+            <div class="LabelHolder rightBarButton">
+              Random
             </div>
           </a>
           <a href="/types">
-            <div class="">
+            <div class="LabelHolder rightBarButton">
               Poké Types
             </div>
           </a>
           <a href="/kanto">
-            <div class="">
+            <div class="LabelHolder rightBarButton">
               About Kanto
             </div>
           </a>
+          <form action="/search" name="searchForm" id="searchFrm">
+            <input type="text" name="search"class="rightBarTextField" value="" placeholder="Search pokémon">
+          </form>
+
         </div>
 
       </div>
+      <div class="borderTrial3"></div>
+      <div class="borderTrial4"></div>
+
     </div>
 
   </body>

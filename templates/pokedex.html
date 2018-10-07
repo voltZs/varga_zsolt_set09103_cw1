@@ -8,20 +8,25 @@
   <div class="mainPage leftPage">
     {% block typed_pokedex_info %}
     {% endblock %}
-    {% for dex_number in pokemon_list %}
-    <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
-      <div class="dexTile">
-        <img src="/static/sprites/{{pokemon_list[dex_number]['sprite']}}" width="20" alt="">
-        <div class="dexLabel">
-          #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
-        </div>
-        <div class="dexLabel">
-          {{pokemon_list[dex_number]['name']}}
-        </div>
 
-      </div>
-    </a>
-    {% endfor %}
+    <div class="flexContainer">
+      {% for dex_number in pokemon_list %}
+      <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
+        <div class="dexTile pointer">
+          <img src="{{url_for('static', filename='sprites/{}.png'.format(dex_number))}}" width="96" height="96" alt="">
+          <div class="LabelHolder">
+            <div class="dexNumLabel">
+              #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
+            </div>
+            <div class="dexNameLabel">
+              {{pokemon_list[dex_number]['name']}}
+            </div>
+          </div>
+
+        </div>
+      </a>
+      {% endfor %}
+    </div>
 
   </div>
 {% endblock %}

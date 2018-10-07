@@ -1,3 +1,28 @@
+body{
+  font-family: 'Nunito', sans-serif;
+}
+
+.borderTrial1{
+  height: 94px;
+  background-color: red;
+  box-shadow: inset -1px 0 0 black, inset 0 -1px 0 black, inset 1px 0 0 black, inset 0 1px 0 black;
+}
+.borderTrial2{
+  height: 25px;
+  background-color: red;
+  box-shadow: inset -1px 0 0 black, inset 0 -1px 0 black, inset 1px 0 0 black, inset 0 1px 0 black;
+}
+.borderTrial3{
+  height: 24px;
+  background-color: white;
+  box-shadow: inset -1px 0 0 black, inset 0 -1px 0 black, inset 1px 0 0 black, inset 0 1px 0 black;
+}
+.borderTrial4{
+  height: 164.5px;
+  background-color: red;
+  box-shadow: inset -1px 0 0 black, inset 0 -1px 0 black, inset 1px 0 0 black, inset 0 1px 0 black;
+}
+
 .mainContainer{
   width: 65%;
   min-width: 620px;
@@ -52,4 +77,64 @@
 
 .whiteBack{
   background-color: white;
+  border-radius: 15%;
+}
+
+.flexContainer{
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.dexTile{
+  margin: 10px;
+}
+
+.rightBarButton{
+  margin: 10px 8px;
+  box-sizing: border-box;
+}
+
+.rightBarTextField{
+  width: 100%;
+  /* border-radius: 5px; */
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+  text-align: center;
+  height: 28px;
+  border: none;
+  padding: 0 8px;
+}
+
+.LabelHolder{
+  background-color: rgba(255,255,255,0.6);
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 0;
+
+}
+
+.LabelHolder:hover{
+  background-color: rgba(255,255,255,0.9);
+}
+
+.dexNumLabel{
+  font-weight: bold;
+}
+.dexNameLabel{
+  font-weight: normal;
+}
+
+
+
+
+
+a{
+  text-decoration: none;
+  color: black;
+}
+.pointer{
+  cursor: pointer;
 }

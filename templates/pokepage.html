@@ -13,7 +13,7 @@
 
       <div class="rightContainer" id="rgc">
         <h1>{{pokemon['name']}}</h1>
-        <a href="/pokedex">
+        <a href="/pokedex" class="pointer">
           <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
         </a>
         {% for type in pokemon['type'] %}
