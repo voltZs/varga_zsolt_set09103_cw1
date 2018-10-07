@@ -8,10 +8,11 @@
   <div class="mainPage leftPage">
     {% for poketype in poketypes %}
       <a href="/types/{{poketype}}">
-        <div class="typeTile">
+        <span class="LabelHolder TypeLabel {{ '{}Type'.format(poketype) }}">
           {{poketype}}
-        </div>
+        </span>
       </a>
+      <br>
     {% endfor %}
   </div>
 {% endblock %}

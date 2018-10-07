@@ -8,7 +8,9 @@
   <div class="mainPage leftPage">
     <div class="sideBySide">
       <div class="leftContainer">
-        <img src="/static/images/{{pokemon['image']}}" class="whiteBack" width="200" alt="">
+        <div class=" pokeImgContainer">
+          <img src="/static/images/{{pokemon['image']}}" class="pokeImg" alt="">
+        </div>
       </div>
 
       <div class="rightContainer" id="rgc">
@@ -16,20 +18,45 @@
         <a href="/pokedex" class="pointer">
           <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
         </a>
-        {% for type in pokemon['type'] %}
-        <div class="typeLabel">
-          {{type}}
-        </div>
-        {% endfor %}
+        <h4>{% for type in pokemon['type'] %}
+          <a href="/types/{{type}}">
+            <span class="LabelHolder TypeLabel {{ '{}Type'.format(type) }}">
+              {{type}}
+            </span>
+          </a>
+          {% endfor %}</h4>
         <h4>Height: {{pokemon['height']/100}} m</h4>
         <h4>Weight: {{pokemon['weight']}} kg</h4>
       </div>
     </div>
+
+    <h2>Evolutions</h2>
+    <div class="flexContainer">
+      {% for evolution in evolutions %}
+      <a href="/pokemon/{{evolutions[evolution]['name']}}">
+        <div class="dexTile pointer">
+          <img src="{{url_for('static', filename='sprites/{}.png'.format(evolutions[evolution]['dexnum']))}}" width="96" height="96" alt="">
+          <div class="LabelHolder">
+            <div class="dexNumLabel">
+              #{{"%03d" % evolutions[evolution]['dexnum']}}
+            </div>
+            <div class="dexNameLabel">
+              {{evolutions[evolution]['name']}}
+            </div>
+          </div>
+
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+
     <h2>Description</h2>
     <p>{{pokemon['description']}}</p>
-    <h2>Evolutions</h2>
-    {%for evolution in pokemon['evolutions'] %}
-      <a href="/pokemon/{{evolution}}"> {{evolution}}</a>
-    {% endfor %}
+
+
+
+
+
   </div>
 {% endblock %}

@@ -27,7 +27,7 @@ class PokeData():
         with open("pokemons.json", "r") as read_file:
             data = json.load(read_file)
         return data
-    
+
     def getPokedexOfType(self, type):
         with open("pokemons.json", "r") as read_file:
             data = json.load(read_file)
@@ -36,6 +36,17 @@ class PokeData():
             if type in data[item]['type'] :
                 data_of_type[item]=data[item]
         return data_of_type
+
+    def getEvolutionsOf(self, num):
+        with open("pokemons.json", "r") as read_file:
+            data = json.load(read_file)
+        evolutions = {}
+        for evolution in self.evolByNum(num):
+            for item in data:
+                if evolution in data[item]['name']:
+                    evolutions[item] = data[item]
+        return evolutions
+
 
     def getPokeByNum(self,num):
         with open("pokemons.json", "r") as read_file:

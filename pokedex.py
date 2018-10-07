@@ -6,10 +6,12 @@ import random
 app = Flask(__name__)
 pokedata = PokeData()
 
+print(pokedata.getEvolutionsOf(3))
+
 # ROUTE HANDLING
 @app.route('/')
 def index():
-    return 'Index page'
+    return render_template('index.html')
 
 @app.route('/search')
 def create_search_url():
@@ -38,7 +40,8 @@ def pokemon(name):
     dexnum = pokedata.numByName(name)
     img = pokedata.imgByNum(dexnum)
     pokemon = pokedata.getPokeByNum(dexnum)
-    return render_template('pokepage.html', pokemon = pokemon)
+    evolutions = pokedata.getEvolutionsOf(dexnum)
+    return render_template('pokepage.html', pokemon = pokemon, evolutions = evolutions)
     # return "<img src='/static/images/{}' >".format(img)
 
 @app.route('/types')

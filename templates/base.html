@@ -18,13 +18,14 @@
       <div class="borderTrial3"></div>
       <div class="regulatoryTopDiv">
       </div>
-      <div class="sideBySide">
-
+      <div class="displayEffect">
         {% block main_page %}
         {% endblock %}
 
         <div class="rightBar rightPage">
-          <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
+          <a href="/">
+            <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
+          </a>
           <a href="/pokedex">
             <div class="LabelHolder rightBarButton">
               Pokédex
@@ -48,7 +49,6 @@
           <form action="/search" name="searchForm" id="searchFrm">
             <input type="text" name="search"class="rightBarTextField" value="" placeholder="Search pokémon">
           </form>
-
         </div>
 
       </div>
