@@ -8,16 +8,45 @@
     <link rel="stylesheet" href="{{url_for('static', filename='fonts/Nunito-Bold.ttf')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='fonts/Nunito-Regular.ttf')}}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dexframe.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/pokedescr.css') }}">
   </head>
   <body>
-
+    <div class="backgroundImgContainer">
+      <img src="{{url_for('static', filename='IMG_3255.jpg')}}" alt="" class="backgroundImg">
+    </div>
+    <div class="regulatoryTopDiv">
+    </div>
     <div class="mainContainer">
-      <div class="borderTrial1"></div>
-      <div class="borderTrial2"></div>
-      <div class="borderTrial3"></div>
-      <div class="regulatoryTopDiv">
-      </div>
+
+      <!-- tags for the design of the pokedex frame -->
+      <div class="largediode"></div>
+      <div class="smalldiode1"></div>
+      <div class="smalldiode2"></div>
+      <div class="smalldiode3"></div>
+      <div class="blackdot1"></div>
+      <div class="blackdot2"></div>
+      <div class="blackcircle"></div>
+      <div class="whiterec1"></div>
+      <div class="whiterec2"></div>
+      <div class="arrows1"></div>
+      <div class="arrows2"></div>
+      <div class="curve1l"></div>
+      <div class="curve1r"></div>
+      <div class="borderscreenl"></div>
+      <div class="borderscreenr"></div>
+      <div class="border1l"></div>
+      <div class="border1r"></div>
+      <div class="border1mid"></div>
+      <div class="border1b_l"></div>
+      <div class="border1b_r"></div>
+      <div class="border2l"></div>
+      <div class="border2r"></div>
+      <div class="border3l"></div>
+      <div class="border3r"></div>
+      <div class="border3mid"></div>
+
+
       <div class="displayEffect">
         {% block main_page %}
         {% endblock %}
@@ -52,9 +81,6 @@
         </div>
 
       </div>
-      <div class="borderTrial3"></div>
-      <div class="borderTrial4"></div>
-
     </div>
 
   </body>
