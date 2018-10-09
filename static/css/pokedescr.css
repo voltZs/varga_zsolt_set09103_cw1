@@ -196,6 +196,18 @@ img div.dexTile{
   height: 200px;
 }
 
+.poke404{
+  position: absolute;
+  bottom: 20px;
+  right: 210px;
+}
+
+.errorCode{
+  text-align: center;
+  margin: 90px auto 0 auto;
+  width: 100%;
+}
+
 h1{
   margin: 5px 0;
   font-weight: bold;

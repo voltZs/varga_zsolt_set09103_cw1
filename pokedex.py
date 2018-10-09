@@ -6,7 +6,13 @@ import random
 app = Flask(__name__)
 pokedata = PokeData()
 
-print(pokedata.getEvolutionsOf(3))
+app.route('/force500')
+def force500():
+    abort(500)
+
+app.route('/force404')
+def force500():
+    abort(404)
 
 # ROUTE HANDLING
 @app.route('/')
@@ -38,6 +44,8 @@ def random_pokemon():
 @app.route('/pokemon/<name>')
 def pokemon(name):
     dexnum = pokedata.numByName(name)
+    if not dexnum:
+        return render_template("err404.html", errorcode = 404)
     img = pokedata.imgByNum(dexnum)
     pokemon = pokedata.getPokeByNum(dexnum)
     evolutions = pokedata.getEvolutionsOf(dexnum)
@@ -58,6 +66,10 @@ def poketype(type):
 @app.route('/kanto')
 def kanto():
     return render_template("kanto.html")
+
+@app.errorhandler(404)
+def page_not_found(err):
+    return render_template('err404.html'), 404
 
 if __name__ == '__main__':
 	app.run(debug=True)

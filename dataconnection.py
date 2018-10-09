@@ -2,20 +2,18 @@ import json
 
 class PokeData():
     def __len__(self):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         return len(data)
 
     def numByName(self, name):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
+        print(len(data))
         for item in data:
-            if name.lower() in data[item]['name'].lower():
+            if name.lower() == data[item]['name'].lower():
                 return data[item]["dexnum"]
 
     def getTypes(self):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         types = []
         for item in data:
             for type in data[item]["type"]:
@@ -24,13 +22,12 @@ class PokeData():
         return types
 
     def getPokedex(self):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
+
         return data
 
     def getPokedexOfType(self, type):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         data_of_type = {}
         for item in data:
             if type in data[item]['type'] :
@@ -38,8 +35,7 @@ class PokeData():
         return data_of_type
 
     def getEvolutionsOf(self, num):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         evolutions = {}
         for evolution in self.evolByNum(num):
             for item in data:
@@ -49,8 +45,7 @@ class PokeData():
 
 
     def getPokeByNum(self,num):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         return data[str(num)]
 
     def nameByNum(self, num):
@@ -81,7 +76,10 @@ class PokeData():
         return self.attributeByNum("weight", num)
 
 
+    def getData(self, filename):
+        with open(filename, "r") as read_file:
+            return json.load(read_file)
+
     def attributeByNum(self, attribute, num):
-        with open("pokemons.json", "r") as read_file:
-            data = json.load(read_file)
+        data = self.getData("pokemons.json")
         return data[str(num)][attribute]
