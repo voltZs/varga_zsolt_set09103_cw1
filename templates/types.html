@@ -6,13 +6,21 @@
 
 {% block main_page %}
   <div class="mainPage leftPage">
-    {% for poketype in poketypes %}
-      <a href="/types/{{poketype}}">
-        <span class="LabelHolder TypeLabel {{ '{}Type'.format(poketype) }}">
-          {{poketype}}
-        </span>
-      </a>
-      <br>
-    {% endfor %}
+    <h2>Poké types</h2>
+    <h3>Below is a list of Pokémon types for Generation I.</h3>
+    <p>
+      Types are essentially kinds or groups of pokemon that usually have similar traits. These traits might include sharing attacks and abilities of the type, although many pokemon can learn moves that are not charcteristic for their type.
+    </p>
+    <p>Select a type to see which pokémon are able to learn it.</p>
+    <div class="flexContainerTypes">
+      {% for poketype in poketypes %}
+        <a href="/types/{{poketype}}">
+          <span class="TypeSizeFix LabelHolder TypeLabel TypeText {{ '{}Type'.format(poketype) }}">
+            {{poketype}}
+          </span>
+        </a>
+        <br>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

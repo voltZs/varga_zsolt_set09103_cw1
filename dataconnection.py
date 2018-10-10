@@ -23,7 +23,6 @@ class PokeData():
 
     def getPokedex(self):
         data = self.getData("pokemons.json")
-
         return data
 
     def getPokedexOfType(self, type):
@@ -39,10 +38,9 @@ class PokeData():
         evolutions = {}
         for evolution in self.evolByNum(num):
             for item in data:
-                if evolution in data[item]['name']:
+                if evolution == data[item]['name']:
                     evolutions[item] = data[item]
         return evolutions
-
 
     def getPokeByNum(self,num):
         data = self.getData("pokemons.json")
@@ -51,35 +49,31 @@ class PokeData():
     def nameByNum(self, num):
         return self.attributeByNum("name", num)
 
-    def aliasByNum(self, num):
-        return self.attributeByNum("alias", num)
-
-    def imgByNum(self, num):
-        return self.attributeByNum("image", num)
-
-    def sprByNum(self, name):
-        return self.attributeByNum("sprite", num)
-
-    def typeByNum(self, num):
-        return self.attributeByNum("type", num)
-
-    def descrByNum(self, num):
-        return self.attributeByNum("description", num)
-
     def evolByNum(self, num):
         return self.attributeByNum("evolutions", num)
 
-    def heightByNum(self, num):
-        return self.attributeByNum("height", num)
+    def attributeByNum(self, attribute, num):
+        data = self.getData("pokemons.json")
+        return data[str(num)][attribute]
 
-    def weightByNum(self, num):
-        return self.attributeByNum("weight", num)
+
+
+
+    def getPokedexOfMove(self, move):
+        dex = self.getPokedex();
+        altered_dex = {}
+        for pokemon in dex:
+            if move in dex[pokemon]['moves']:
+                altered_dex[pokemon]= dex[pokemon]
+        return altered_dex
+
+    def getMoves(self):
+        data = self.getData("moves.json")
+        return data
+
+
 
 
     def getData(self, filename):
         with open(filename, "r") as read_file:
             return json.load(read_file)
-
-    def attributeByNum(self, attribute, num):
-        data = self.getData("pokemons.json")
-        return data[str(num)][attribute]

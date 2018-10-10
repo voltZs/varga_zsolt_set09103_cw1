@@ -7,25 +7,90 @@
 {% block main_page %}
   <div class="mainPage leftPage">
     {% block typed_pokedex_info %}
+    <h2>Pokédex</h2>
+    <h3>This is the complete collection of all pokémon</h3>
+    <p>To make your life easier, use the filter below</p>
+
+    <div class="sectionHolder filterSection">
+      <form action="/pokedex">
+        <div class="flexContainer">
+          <label for="type_input">Type </label>
+          <select class="" name="type" id="type_selector">
+            {% for type in poketypes %}
+              <option value="{{type}}">{{type}}</option>
+            {% endfor %}
+          </select>
+          <br>
+          <div class ="inputContainer flexContainer">
+            <div class="inputGroup">
+              <div class="inputLabel flexContainer">Catch rate</div>
+              <div class = "inputDiv flexContainer">
+                <input id="min_catch_input" type="number" name="min_catch" value="" placeholder="0" min="0" max = "255"
+                  onchange="document.getElementById('max_catch_input').min=this.value">
+                  -
+                <input id="max_catch_input" type="number" name="max_catch" value="" placeholder="255" min="0" max="255"
+                  onchange="document.getElementById('min_catch_input').max=this.value">
+              </div>
+
+              <div class="inputLabel flexContainer">Hatch Time</div>
+              <div class ="inputDiv flexContainer">
+                <input id="min_hatch_input" type="number" name="min_hatch" value="" placeholder="1.2k steps" min="1200" max = "32000"
+                  onchange="document.getElementById('max_hatch_input').min=this.value">
+                  -
+                <input id="max_hatch_input" type="number" name="max_hatch" value="" placeholder="32k steps" min="0" max="32000"
+                  onchange="document.getElementById('min_hatch_input').max=this.value">
+              </div>
+            </div>
+
+            <div class="inputGroup">
+              <div class="inputLabel flexContainer">Weight</div>
+              <div class="inputDiv flexContainer">
+                <input id="min_weight_input" type="number" name="min_weight" value="" placeholder="0kg" min="1200" max = "32000"
+                  onchange="document.getElementById('max_weight_input').min=this.value">
+                  -
+                <input id="max_weight_input" type="number" name="max_weight" value="" placeholder="500kg" min="0" max="32000"
+                  onchange="document.getElementById('min_weight_input').max=this.value">
+              </div>
+
+              <div class="inputLabel flexContainer">Height</div>
+              <div class="inputDiv flexContainer">
+                <input id="min_height_input" type="number" name="min_height" value="" placeholder="0m" min="1200" max = "32000"
+                  onchange="document.getElementById('max_height_input').min=this.value">
+                  -
+                <input id="max_height_input" type="number" name="max_height" value="" placeholder="10m" min="0" max="32000"
+                  onchange="document.getElementById('min_height_input').max=this.value">
+              </div>
+            </div>
+        </div>
+        <input type="submit" name="" value="GO!">
+
+        </div>
+      </form>
+    </div>
     {% endblock %}
 
     <div class="flexContainer">
-      {% for dex_number in pokemon_list %}
-      <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
-        <div class="dexTile pointer">
-          <img src="{{url_for('static', filename='sprites/{}.png'.format(dex_number))}}" width="96" height="96" alt="">
-          <div class="LabelHolder">
-            <div class="dexNumLabel">
-              #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
+      {% if pokemon_list %}
+        {% for dex_number in pokemon_list %}
+        <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
+          <div class="dexTile pointer">
+            <img src="{{url_for('static', filename='sprites/{}.png'.format(dex_number))}}" width="96" height="96" alt="">
+            <div class="LabelHolder">
+              <div class="dexNumLabel">
+                #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
+              </div>
+              <div class="dexNameLabel">
+                {{pokemon_list[dex_number]['name']}}
+              </div>
             </div>
-            <div class="dexNameLabel">
-              {{pokemon_list[dex_number]['name']}}
-            </div>
-          </div>
 
-        </div>
-      </a>
-      {% endfor %}
+          </div>
+        </a>
+        {% endfor %}
+      {% else %}
+        <h3>No Pokémon for this criteria.</h3>
+      {% endif %}
+
     </div>
 
   </div>

@@ -1,11 +1,53 @@
-html{
-  height
-}
 body{
   font-family: 'Nunito', sans-serif;
   height: 100%;
   min-height: 100vh;
   margin: 0;
+}
+
+.pokeLogoContainer{
+  position: relative;
+  padding-top: 88%;
+  margin: 0px 8px 20px 8px;
+}
+
+.pokeCircle{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0, 0.4);
+  border-radius: 50%;
+}
+
+.pokeRect{
+  position: absolute;
+  top: 50%;
+  height: 15px;
+  width: 100%;
+  transform: translateY(-50%);
+  background-color: #e8e8e8
+}
+
+.pokeCircleSmall{
+  position: absolute;
+  top:30%;
+  bottom: 30%;
+  left: 30%;
+  right: 30%;
+  background-color: #e8e8e8;
+  border-radius: 50%;
+}
+
+.pokeCircleTiny{
+  position: absolute;
+  top:38%;
+  bottom: 38%;
+  left: 38%;
+  right: 38%;
+  background-color: rgba(0,0,0, 0.4);
+  border-radius: 50%;
 }
 
 .backgroundImgContainer{
@@ -113,6 +155,13 @@ body{
   justify-content: space-evenly;
 }
 
+.flexContainerTypes{
+  padding: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
 .dexTile{
   margin: 5px 10px;
 }
@@ -136,12 +185,14 @@ img div.dexTile{
   height: 28px;
   border: none;
   padding: 0 8px;
+  border-radius: 5px;
 }
 
 .sectionHolder{
   background-color: rgba(255,255,255,0.6);
   border-radius: 20px;
 }
+
 
 .LabelHolder{
   background-color: rgba(255,255,255,0.75);
@@ -155,34 +206,167 @@ img div.dexTile{
 }
 
 .TypeLabel{
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  height: 25px;
   padding: 0 8px;
   margin-right: 10px;
+  height: 25px;
 }
-
-.TypeLabel.FireType{
-  background-color: red;
-}
-.TypeLabel.GrassType{
-  background-color: green;
-}
-.TypeLabel.PoisonType{
-  background-color: purple;
-}
-.TypeLabel.FlyingType{
-  background-color: brown;
-}
-.TypeLabel.WaterType{
-  background-color: blue;
-}
-
 .TypeLabel:hover{
   color: white;
 }
 
+.TypeLabel.TypeSizeFix{
+  display: inline-block;
+  height: 20px;
+  width: 70px;
+  text-align: center;
+  margin: 5px;
+  padding-top: 2px;
+}
+
+
+.MoveLabel{
+  padding: 0 8px;
+  margin-right: 10px;
+  height: 25px;
+}
+
+.MoveLabel.PhysicalMoveCategory{
+  background-color: rgb(186, 52, 35)
+}
+.MoveLabel.SpecialMoveCategory{
+  background-color: rgb(80, 88, 110)
+}
+.MoveLabel.StatusMoveCategory{
+  background-color: rgb(140, 140, 140)
+}
+
+.TypeText{
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.TypeLabel.FireType{
+  background-color: rgb(184, 52, 27)
+}
+.TypeLabel.BugType{
+  background-color: rgb(13, 148, 48);
+}
+.TypeLabel.DarkType{
+  background-color: rgb(60,46,36);
+}
+.TypeLabel.DragonType{
+  background-color: rgb(105, 93, 199)
+}
+.TypeLabel.ElectricType{
+  background-color: rgb(219, 149, 53);
+}
+.TypeLabel.FairyType{
+  background-color: rgb(214, 148, 221);
+}
+.TypeLabel.FightingType{
+  background-color: rgb(115, 52, 34);
+}
+.TypeLabel.GhostType{
+  background-color: rgb(68, 71, 143);
+}
+.TypeLabel.GroundType{
+  background-color: rgb(184, 159, 92);
+}
+.TypeLabel.IceType{
+  background-color: rgb(138, 211, 241);
+}
+.TypeLabel.NormalType{
+  background-color: rgb(181, 178, 169);
+}
+.TypeLabel.PsychicType{
+  background-color: rgb(205, 65, 102);
+}
+.TypeLabel.RockType{
+  background-color: rgb(155, 134, 71);
+}
+.TypeLabel.SteelType{
+  background-color: rgb(143, 142, 157);
+}
+.TypeLabel.GrassType{
+  background-color: rgb(73, 117, 45);
+}
+.TypeLabel.PoisonType{
+  background-color: rgb(85, 40, 89);
+}
+.TypeLabel.FlyingType{
+  background-color: rgb(97, 118, 205);
+}
+.TypeLabel.WaterType{
+  background-color: rgb(43, 104,188);
+}
+
+
+
+table{
+  width: 100%;
+  text-align: center;
+}
+
+th{
+  text-align: center;
+}
+th:nth-of-type(2){
+  text-align: left;
+}
+td:nth-of-type(2){
+  text-align: left;
+}
+td:nth-of-type(5){
+  width: 12%;
+}
+td:nth-of-type(6){
+  width: 12%;
+}
+
+.inputContainer{
+  width: 100%;
+}
+.inputGroup{
+  display: inline-block;
+  width: 45%;
+  box-sizing: border-box;
+}
+.inputDiv{
+  padding-bottom:10px;
+}
+.inputLabel{
+  padding-top: 10px;
+  margin: 0 auto;
+}
+.centeredDiv{
+  margin-left: auto;
+  margin-right: auto;
+}
+input{
+  /* float:right; */
+}
+input[type="number"]{
+  width: 40%;
+  text-align: center;
+  font-size: 15px;
+  height: 19px;
+  border-radius: 5px;
+  border-style: none;
+  outline: none;
+}
+input[type="submit"]{
+  width: 60px;
+  height: 10px;
+
+}
+
+.filterSection{
+  padding: 10px 0;
+}
+.inputLabel{
+  width: 100%;
+}
 
 .dexNumLabel{
   font-weight: bold;

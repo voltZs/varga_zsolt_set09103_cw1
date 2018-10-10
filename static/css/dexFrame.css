@@ -108,6 +108,7 @@
   background-color: black;
   border: 2px solid black;
   border-radius: 50%;
+  box-shadow: 4px 4px 24px -3px black;
 }
 
 .whiterec1{
@@ -147,6 +148,7 @@
   background-color: black;
   border: 2px solid black;
   border-radius: 12px;
+  box-shadow: 4px 4px 24px -3px black;
 }
 .arrows2{
   z-index: -2;
@@ -158,6 +160,7 @@
   background-color: black;
   border: 2px solid black;
   border-radius: 12px;
+  box-shadow: 4px 4px 24px -3px black;
 }
 
 .curve1l{

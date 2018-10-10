@@ -25,16 +25,16 @@
 
         <div class="rightBar rightPage">
           <a href="/">
-            <img src="https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png" width="130" alt="">
+            <div class="pokeLogoContainer">
+              <div class="pokeCircle"></div>
+              <div class="pokeRect"></div>
+              <div class="pokeCircleSmall"></div>
+              <div class="pokeCircleTiny"></div>
+            </div>
           </a>
           <a href="/pokedex">
             <div class="LabelHolder rightBarButton">
               Pokédex
-            </div>
-          </a>
-          <a href="/pokemon/random">
-            <div class="LabelHolder rightBarButton">
-              Random
             </div>
           </a>
           <a href="/types">
@@ -47,11 +47,16 @@
               Poké Moves
             </div>
           </a>
-          <a href="/kanto">
+          <a href="/pokemon/random">
+            <div class="LabelHolder rightBarButton">
+              Random
+            </div>
+          </a>
+          <!-- <a href="/kanto">
             <div class="LabelHolder rightBarButton">
               Kanto
             </div>
-          </a>
+          </a> -->
           <form action="/search" name="searchForm" id="searchFrm">
             <input type="text" name="search"class="rightBarTextField" value="" placeholder="Search pokémon">
           </form>

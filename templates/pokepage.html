@@ -14,13 +14,15 @@
       </div>
 
       <div class="rightContainer" id="rgc">
-        <h1>{{pokemon['name']}}</h1>
         <a href="/pokedex" class="pointer">
           <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
         </a>
+        <h1>{{pokemon['name']}}</h1>
+        <h4>{{pokemon['alias']}}</h4>
+
         <h4>{% for type in pokemon['type'] %}
           <a href="/types/{{type}}">
-            <span class="LabelHolder TypeLabel {{ '{}Type'.format(type) }}">
+            <span class="LabelHolder TypeLabel TypeText {{ '{}Type'.format(type) }}">
               {{type}}
             </span>
           </a>
@@ -53,6 +55,22 @@
 
     <h2>Description</h2>
     <p>{{pokemon['description']}}</p>
+
+    <h4>Catch rate: {{pokemon['catchrate']}}</h4>
+    <h4>Hatch time: {{pokemon['hatchtime'][0]}} to {{pokemon['hatchtime'][1]}} steps</h4>
+    <br>
+
+    <h2>Learnable moves:</h2>
+    <p>
+      {% for move in pokemon['moves'] %}
+        <a href="/moves/{{move}}">
+          {{move}}
+        </a>
+        <br>
+      {% endfor %}
+    </p>
+    <br>
+
 
 
 

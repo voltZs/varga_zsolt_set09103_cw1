@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block meta_title %}
+  <title>Poké Moves</title>
+{% endblock %}
+
+{% block main_page %}
+  <div class="mainPage leftPage">
+    <h2>Poké moves</h2>
+    <h3>Below is a list of Pokémon moves available in Generation I.</h3>
+    <p>Select a move to see which pokémon are able to learn it.</p>
+    <table id="itemsTable">
+      <tbody>
+        <tr>
+          <th>#</th>
+          <th>Move</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>PP</th>
+          <th>Accuracy</th>
+        </tr>
+        {% for num in pokemoves %}
+          <tr>
+            <td>
+              {{num}}
+            </td>
+            <td >
+              <a href="/moves/{{pokemoves[num]['name']}}">
+                <strong>{{pokemoves[num]['name']}}</strong>
+              </a>
+            </td>
+            <td class="TypeLabel LabelHolder {{ '{}Type'.format(pokemoves[num]['type'])}}">
+              <a href="/types/{{pokemoves[num]['type']}}">
+                <span class="TypeText">
+                {{pokemoves[num]['type']}}
+                </span>
+              </a>
+            </td>
+            <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(pokemoves[num]['category'])}}">
+              {{pokemoves[num]['category']}}
+            </td>
+            <td>
+              {{pokemoves[num]['pp']}}
+            </td>
+            <td>
+              {% if pokemoves[num]['accuracy'] == None %}
+              N/A
+              {% else %}
+              {{pokemoves[num]['accuracy']}}%
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

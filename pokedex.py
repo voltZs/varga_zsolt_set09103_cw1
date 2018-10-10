@@ -6,6 +6,16 @@ import random
 app = Flask(__name__)
 pokedata = PokeData()
 
+abcd = pokedata.getPokedex()
+times = []
+for abc in abcd:
+    times.append((abcd[abc]["height"]))
+
+times.sort()
+print(times)
+
+
+
 app.route('/force500')
 def force500():
     abort(500)
@@ -31,7 +41,12 @@ def search(search_word):
 @app.route('/pokedex')
 def pokedex():
     data = pokedata.getPokedex()
-    return render_template('pokedex.html', pokemon_list = data)
+    typeslist = pokedata.getTypes()
+    return render_template('pokedex.html', pokemon_list = data, poketypes = typeslist)
+
+@app.route('/pokemon')
+def redir_to_pokedex():
+    return redirect("/pokedex")
 
 @app.route('/pokemon/random')
 def random_pokemon():
@@ -46,7 +61,6 @@ def pokemon(name):
     dexnum = pokedata.numByName(name)
     if not dexnum:
         return render_template("err404.html", errorcode = 404)
-    img = pokedata.imgByNum(dexnum)
     pokemon = pokedata.getPokeByNum(dexnum)
     evolutions = pokedata.getEvolutionsOf(dexnum)
     return render_template('pokepage.html', pokemon = pokemon, evolutions = evolutions)
@@ -63,9 +77,19 @@ def poketype(type):
     data = pokedata.getPokedexOfType(type)
     return render_template('typed_pokedex.html', pokemon_list = data, type = type)
 
-@app.route('/kanto')
-def kanto():
-    return render_template("kanto.html")
+@app.route("/moves")
+def pokemoves():
+    moves = pokedata.getMoves()
+    return render_template("moves.html", pokemoves = moves)
+
+@app.route("/moves/<move>")
+def pokemove(move):
+    data = pokedata.getPokedexOfMove(move)
+    return render_template("moves_pokedex.html", pokemon_list = data, move = move)
+
+# @app.route('/kanto')
+# def kanto():
+#     return render_template("kanto.html")
 
 @app.errorhandler(404)
 def page_not_found(err):
