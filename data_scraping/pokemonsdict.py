@@ -40,91 +40,96 @@ for tr in rows:
         print(pokename)
 
         # MAKE REQUEST FOR MOVES OR A POKEMON
-        # url = "https://bulbapedia.bulbagarden.net/wiki/"+pokename+"_(Pok%C3%A9mon)/Generation_I_learnset"
-        # response = requests.get(url)
-        # moves = []
-        # tempMoves = []
-        # soup = BeautifulSoup(response.text, "html.parser")
-        # for tr in soup.find(id="mw-content-text").select("table.sortable")[0].select("tr"):
-        #     tempMoves.append(tr.select("span:nth-of-type(2)")[0].get_text())
-        #
-        # for num in range(1, len(tempMoves)):
-        #     moves.append(tempMoves[num])
-        # tempMoves = []
-        #
-        # for tr in soup.select("table:nth-of-type(5)")[0].select("tr"):
-        #     if tr.select("span:nth-of-type(2)"):
-        #         tempMoves.append(tr.select("span:nth-of-type(2)")[0].get_text())
-        #
-        # for num in range(4, len(tempMoves)):
-        #     moves.append(tempMoves[num])
-        # time.sleep(1)
-        #
-        # # MAKE REQUEST FOR  DETAILS OF A POKEMON
-        # url = "https://bulbapedia.bulbagarden.net/wiki/" + pokename
-        # response = requests.get(url)
-        #
-        # # ALIAS
-        # alias = ""
-        # soup = BeautifulSoup(response.text, "html.parser")
-        #
-        # alias = soup.find(title="Pokémon category").select("span:nth-of-type(1)")[0]
-        # if alias.select("span"):
-        #     alias = alias.select("span")[0].get_text()
-        # else:
-        #     alias = alias.get_text()
-        #
-        #
-        # #DESCRIPTION
-        # description=""
-        # description = soup.find(id="Biology").parent.find_next_siblings("p")[0].get_text()
-        #
-        # # HEIGHT
-        # height=""
-        # height = soup.find(id="mw-content-text").select("table:nth-of-type(22)")[0].select("tr")[0].select("td")[1].get_text()
-        # height = int(float(height[:-2])*100)
-        #
-        # # WEIGHT
-        # weight=""
-        # weight = soup.find(id="mw-content-text").select("table:nth-of-type(23)")[0].select("tr")[0].select("td")[1].get_text()
-        # weight = float(weight[:-3])
-        #
-        # # CATCHRATE
-        # catchrate=""
-        # catchrate = soup.find(id="mw-content-text").select("table:nth-of-type(18)")[0].select("small")[0].previous_sibling
-        # catchrate = int(catchrate)
-        #
-        # # HATCHTIME
-        # hatchtime=""
-        # hatchtime = soup.find(id="mw-content-text").select("table:nth-of-type(21)")[0].select("small")[0].previous_sibling
-        # vals = hatchtime.split("-")
-        # hatchtime_vals = []
-        # for num in range(0, 2):
-        #     hatchtime_vals.append(int(vals[num]))
-        #
-        #
-        # pokemons[dexnum] = {}
-        # pokemons[dexnum]["dexnum"] = dexnum
-        # pokemons[dexnum]["name"] = pokename
-        # pokemons[dexnum]["sprite"] = str(dexnum)+".png"
-        # pokemons[dexnum]["image"] = pokename.lower()+"_img.png"
-        # pokemons[dexnum]["type"] = type
-        # pokemons[dexnum]["alias"] = alias
-        # pokemons[dexnum]["description"] = description
-        #
-        # # pokemons[dexnum]["moves"] = moves
-        # pokemons[dexnum]["evolutions"] = evolutions_dict[pokename]
-        # pokemons[dexnum]["height"] = height
-        # pokemons[dexnum]["weight"] = weight
-        # pokemons[dexnum]["catchrate"] = catchrate
-        # pokemons[dexnum]["hatchtime"] = hatchtime_vals
-        #
-        # print(pokemons[dexnum])
-        # # time.sleep(1)
+        url = "https://bulbapedia.bulbagarden.net/wiki/"+pokename+"_(Pok%C3%A9mon)/Generation_I_learnset"
+        response = requests.get(url)
+        moves = []
+        tempMoves = []
+        soup = BeautifulSoup(response.text, "html.parser")
+        for tr in soup.find(id="mw-content-text").select("table.sortable")[0].select("tr"):
+            if len(tr.select("td")) == 7 :
+                tempMoves.append(tr.select("span")[0].get_text())
+            else:
+                tempMoves.append(tr.select("span")[1].get_text())
 
 
-# with open("pokemons1.json", "w") as write_file:
-#     json.dump(pokemons, write_file)
+
+        for num in range(1, len(tempMoves)):
+            moves.append(tempMoves[num])
+        tempMoves = []
+
+        for tr in soup.select("table:nth-of-type(5)")[0].select("tr"):
+            if tr.select("span:nth-of-type(2)"):
+                tempMoves.append(tr.select("span:nth-of-type(2)")[0].get_text())
+
+        for num in range(4, len(tempMoves)):
+            moves.append(tempMoves[num])
+        time.sleep(1)
+
+        # MAKE REQUEST FOR  DETAILS OF A POKEMON
+        url = "https://bulbapedia.bulbagarden.net/wiki/" + pokename
+        response = requests.get(url)
+
+        # ALIAS
+        alias = ""
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        alias = soup.find(title="Pokémon category").select("span:nth-of-type(1)")[0]
+        if alias.select("span"):
+            alias = alias.select("span")[0].get_text()
+        else:
+            alias = alias.get_text()
+
+
+        #DESCRIPTION
+        description=""
+        description = soup.find(id="Biology").parent.find_next_siblings("p")[0].get_text()
+
+        # HEIGHT
+        height=""
+        height = soup.find(id="mw-content-text").select("table:nth-of-type(22)")[0].select("tr")[0].select("td")[1].get_text()
+        height = int(float(height[:-2])*100)
+
+        # WEIGHT
+        weight=""
+        weight = soup.find(id="mw-content-text").select("table:nth-of-type(23)")[0].select("tr")[0].select("td")[1].get_text()
+        weight = float(weight[:-3])
+
+        # CATCHRATE
+        catchrate=""
+        catchrate = soup.find(id="mw-content-text").select("table:nth-of-type(18)")[0].select("small")[0].previous_sibling
+        catchrate = int(catchrate)
+
+        # HATCHTIME
+        hatchtime=""
+        hatchtime = soup.find(id="mw-content-text").select("table:nth-of-type(21)")[0].select("small")[0].previous_sibling
+        vals = hatchtime.split("-")
+        hatchtime_vals = []
+        for num in range(0, 2):
+            hatchtime_vals.append(int(vals[num]))
+
+
+        pokemons[dexnum] = {}
+        pokemons[dexnum]["dexnum"] = dexnum
+        pokemons[dexnum]["name"] = pokename
+        pokemons[dexnum]["sprite"] = str(dexnum)+".png"
+        pokemons[dexnum]["image"] = pokename.lower()+"_img.png"
+        pokemons[dexnum]["type"] = type
+        pokemons[dexnum]["alias"] = alias
+        pokemons[dexnum]["description"] = description
+
+        pokemons[dexnum]["moves"] = moves
+        pokemons[dexnum]["evolutions"] = evolutions_dict[pokename]
+        pokemons[dexnum]["height"] = height
+        pokemons[dexnum]["weight"] = weight
+        pokemons[dexnum]["catchrate"] = catchrate
+        pokemons[dexnum]["hatchtime"] = hatchtime_vals
+
+        print(pokemons[dexnum])
+        time.sleep(1)
+
+
+with open("pokemons.json", "w") as write_file:
+    json.dump(pokemons, write_file)
 
 
 
