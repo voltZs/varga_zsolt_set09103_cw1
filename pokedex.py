@@ -75,7 +75,8 @@ def poketypes():
 def poketype(type):
     # making use of the pokedex template with one extra variable - the type (filter)
     data = pokedata.getPokedexOfType(type)
-    return render_template('typed_pokedex.html', pokemon_list = data, type = type)
+    typeinfo = pokedata.getTypes()[type]['description']
+    return render_template('typed_pokedex.html', pokemon_list = data, type = type, typeinfo = typeinfo)
 
 @app.route("/moves")
 def pokemoves():
@@ -85,7 +86,8 @@ def pokemoves():
 @app.route("/moves/<move>")
 def pokemove(move):
     data = pokedata.getPokedexOfMove(move)
-    return render_template("moves_pokedex.html", pokemon_list = data, move = move)
+    move_obj = pokedata.getMove(move)
+    return render_template("moves_pokedex.html", pokemon_list = data, move = move_obj)
 
 # @app.route('/kanto')
 # def kanto():

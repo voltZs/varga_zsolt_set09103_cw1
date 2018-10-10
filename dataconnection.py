@@ -12,14 +12,6 @@ class PokeData():
             if name.lower() == data[item]['name'].lower():
                 return data[item]["dexnum"]
 
-    def getTypes(self):
-        data = self.getData("pokemons.json")
-        types = []
-        for item in data:
-            for type in data[item]["type"]:
-                if type not in types:
-                    types.append(type)
-        return types
 
     def getPokedex(self):
         data = self.getData("pokemons.json")
@@ -67,9 +59,23 @@ class PokeData():
                 altered_dex[pokemon]= dex[pokemon]
         return altered_dex
 
+    def getMove(self, move):
+        moves = self.getData("moves.json")
+        for index in moves:
+            if moves[index]['name'] == move:
+                return moves[index]
+
+        return None
+
     def getMoves(self):
         data = self.getData("moves.json")
         return data
+
+
+    def getTypes(self):
+        types = self.getData("poketypes.json")
+        return types
+
 
 
 

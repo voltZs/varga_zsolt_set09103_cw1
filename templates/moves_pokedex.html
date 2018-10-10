@@ -1,9 +1,51 @@
 {% extends "pokedex.html" %}
 
 {% block meta_title %}
-  <title>{{move}}</title>
+  <title>{{move['name']}}</title>
 {% endblock %}
 
 {% block typed_pokedex_info %}
-  <h2>Pokémon able to learn {{move}}</h2>
+  <h2>Poké move {{move['name']}}</h2>
+  <div class="sectionHolder paddingBox">
+    <p>{{move['description']}}</p>
+    <table id="itemsTable">
+      <tbody>
+        <tr>
+          <th></th>
+          <th>Move</th>
+          <th>Type</th>
+          <th>Category</th>
+          <th>PP</th>
+          <th>Accuracy</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td >
+            <strong>{{move['name']}}</strong>
+          </td>
+          <td class="TypeLabel LabelHolder {{ '{}Type'.format(move['type'])}}">
+            <a href="/types/{{move['type']}}">
+              <span class="TypeText">
+              {{move['type']}}
+              </span>
+            </a>
+          </td>
+          <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(move['category'])}}">
+            {{move['category']}}
+          </td>
+          <td>
+            {{move['pp']}}
+          </td>
+          <td>
+            {% if move['accuracy'] == None %}
+            N/A
+            {% else %}
+            {{move['accuracy']}}%
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Pokémon able to learn {{move['name']}}</h3>
 {% endblock %}

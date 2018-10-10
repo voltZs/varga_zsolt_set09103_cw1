@@ -192,7 +192,10 @@ img div.dexTile{
   background-color: rgba(255,255,255,0.6);
   border-radius: 20px;
 }
-
+.paddingBox{
+  padding: 1px 6px 12px 6px;;
+  margin-right: 10px;
+}
 
 .LabelHolder{
   background-color: rgba(255,255,255,0.75);
