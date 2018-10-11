@@ -364,6 +364,13 @@ input[type="submit"]{
 
 }
 
+
+.pokeNavigator{
+display: inline;
+float: right;
+}
+
+
 .filterSection{
   padding: 10px 0;
 }

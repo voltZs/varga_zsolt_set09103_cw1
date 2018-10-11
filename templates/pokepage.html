@@ -14,6 +14,21 @@
       </div>
 
       <div class="rightContainer" id="rgc">
+
+          <div class="pokeNavigator">
+            {% if not pokemon['dexnum'] == 1 %}
+            <a href="{{'/pokemon/'+ prev_pokemon['name']}}">
+              <strong><#{{"%03d" % prev_pokemon['dexnum']}}</strong>
+            </a>
+            {% endif %}
+
+            {% if not pokemon['dexnum'] == 151 %}
+            <a href="{{'/pokemon/'+ next_pokemon['name']}}">
+              <strong>#{{"%03d" % next_pokemon['dexnum']}}></strong>
+            </a>
+            {% endif %}
+          </div>
+
         <a href="/pokedex" class="pointer">
           <h2>#{{"%03d" % pokemon['dexnum']}}</h2>
         </a>

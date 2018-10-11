@@ -62,8 +62,17 @@ def pokemon(name):
     if not dexnum:
         return render_template("err404.html", errorcode = 404)
     pokemon = pokedata.getPokeByNum(dexnum)
+    if dexnum == 1:
+        prev_pokemon = {}
+        next_pokemon = pokedata.getPokeByNum(dexnum+1)
+    elif dexnum == 151:
+        prev_pokemon = pokedata.getPokeByNum(dexnum-1)
+        next_pokemon = {}
+    else:
+        prev_pokemon = pokedata.getPokeByNum(dexnum-1)
+        next_pokemon = pokedata.getPokeByNum(dexnum+1)
     evolutions = pokedata.getEvolutionsOf(dexnum)
-    return render_template('pokepage.html', pokemon = pokemon, evolutions = evolutions)
+    return render_template('pokepage.html', pokemon = pokemon, prev_pokemon = prev_pokemon, next_pokemon = next_pokemon, evolutions = evolutions)
     # return "<img src='/static/images/{}' >".format(img)
 
 @app.route('/types')
