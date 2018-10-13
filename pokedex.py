@@ -39,14 +39,15 @@ def search(search_word):
     return 'Search page. Searched word: {}'.format(search_word)
 
 @app.route('/pokedex')
+def red_pokedex():
+    return redirect("/pokemon")
+
+@app.route('/pokemon')
 def pokedex():
     data = pokedata.getPokedex()
     typeslist = pokedata.getTypes()
     return render_template('pokedex.html', pokemon_list = data, poketypes = typeslist)
 
-@app.route('/pokemon')
-def redir_to_pokedex():
-    return redirect("/pokedex")
 
 @app.route('/pokemon/random')
 def random_pokemon():
@@ -75,12 +76,12 @@ def pokemon(name):
     return render_template('pokepage.html', pokemon = pokemon, prev_pokemon = prev_pokemon, next_pokemon = next_pokemon, evolutions = evolutions)
     # return "<img src='/static/images/{}' >".format(img)
 
-@app.route('/types')
+@app.route('/pokemon/types')
 def poketypes():
     types = pokedata.getTypes()
     return render_template("types.html", poketypes = types)
 
-@app.route('/types/<type>')
+@app.route('/pokemon/types/<type>')
 def poketype(type):
     # making use of the pokedex template with one extra variable - the type (filter)
     data = pokedata.getPokedexOfType(type)
@@ -97,6 +98,17 @@ def pokemove(move):
     data = pokedata.getPokedexOfMove(move)
     move_obj = pokedata.getMove(move)
     return render_template("moves_pokedex.html", pokemon_list = data, move = move_obj)
+
+@app.route('/moves/types/<type>')
+def pokemovetype(type):
+    data = pokedata.getMovesOfType(type)
+    return render_template('typed_moves.html', pokemoves= data, type = type)
+
+@app.route('/moves/categories/<category>')
+def pokemovecategory(category):
+    data = pokedata.getMovesOfCategory(category)
+    return render_template('categorised_moves.html', pokemoves= data, category = type)
+
 
 # @app.route('/kanto')
 # def kanto():

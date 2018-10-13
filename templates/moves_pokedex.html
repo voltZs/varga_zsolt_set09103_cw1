@@ -24,14 +24,18 @@
             <strong>{{move['name']}}</strong>
           </td>
           <td class="TypeLabel LabelHolder {{ '{}Type'.format(move['type'])}}">
-            <a href="/types/{{move['type']}}">
+            <a href="/moves/types/{{move['type']}}">
               <span class="TypeText">
               {{move['type']}}
               </span>
             </a>
           </td>
           <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(move['category'])}}">
-            {{move['category']}}
+            <a href="/moves/categories/{{move['category']}}">
+              <span class="TypeText">
+                {{move['category']}}
+              </span>
+            </a>
           </td>
           <td>
             {{move['pp']}}

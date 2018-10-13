@@ -14,7 +14,7 @@
     <p>Select a type to see which pokémon are able to learn it.</p>
     <div class="flexContainerTypes">
       {% for poketype in poketypes %}
-        <a href="/types/{{poketype}}">
+        <a href="/pokemon/types/{{poketype}}">
           <span class="TypeSizeFix LabelHolder TypeLabel TypeText {{ '{}Type'.format(poketype) }}">
             {{poketype}}
           </span>

@@ -22,7 +22,7 @@
             </a>
             {% endif %}
 
-            {% if not pokemon['dexnum'] == 151 %}
+            {% if not pokemon['dexnum'] == 255 %}
             <a href="{{'/pokemon/'+ next_pokemon['name']}}">
               <strong>#{{"%03d" % next_pokemon['dexnum']}}></strong>
             </a>
@@ -36,7 +36,7 @@
         <h4>{{pokemon['alias']}}</h4>
 
         <h4>{% for type in pokemon['type'] %}
-          <a href="/types/{{type}}">
+          <a href="/pokemon/types/{{type}}">
             <span class="LabelHolder TypeLabel TypeText {{ '{}Type'.format(type) }}">
               {{type}}
             </span>

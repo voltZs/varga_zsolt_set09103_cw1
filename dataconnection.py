@@ -71,6 +71,22 @@ class PokeData():
         data = self.getData("moves.json")
         return data
 
+    def getMovesOfType(self, type):
+        data = self.getData("moves.json")
+        data_of_type = {}
+        for item in data:
+            if type in data[item]['type'] :
+                data_of_type[item]=data[item]
+        return data_of_type
+
+    def getMovesOfCategory(self, category):
+        data = self.getData("moves.json")
+        data_of_category = {}
+        for item in data:
+            if category in data[item]['category'] :
+                data_of_category[item]=data[item]
+        return data_of_category
+
 
     def getTypes(self):
         types = self.getData("poketypes.json")
