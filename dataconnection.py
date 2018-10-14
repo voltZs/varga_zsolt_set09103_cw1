@@ -108,8 +108,6 @@ class PokeData():
         return data[str(num)][attribute]
 
 
-
-
     def getPokedexOfMove(self, move):
         dex = self.getPokedex();
         altered_dex = {}
