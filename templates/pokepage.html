@@ -15,14 +15,14 @@
 
       <div class="rightContainer" id="rgc">
 
-          <div class="pokeNavigator">
+          <div class="upRightFloat">
             {% if not pokemon['dexnum'] == 1 %}
             <a href="{{'/pokemon/'+ prev_pokemon['name']}}">
               <strong><#{{"%03d" % prev_pokemon['dexnum']}}</strong>
             </a>
             {% endif %}
 
-            {% if not pokemon['dexnum'] == 255 %}
+            {% if not pokemon['dexnum'] == 151 %}
             <a href="{{'/pokemon/'+ next_pokemon['name']}}">
               <strong>#{{"%03d" % next_pokemon['dexnum']}}></strong>
             </a>
@@ -52,7 +52,11 @@
       {% for evolution in evolutions %}
       <a href="/pokemon/{{evolutions[evolution]['name']}}">
         <div class="dexTile pointer">
-          <img src="{{url_for('static', filename='sprites/{}.png'.format(evolutions[evolution]['dexnum']))}}" width="96" height="96" alt="">
+          <img src="{{url_for('static', filename='sprites/{}.png'.format(evolutions[evolution]['dexnum']))}}"
+            class="{% if not evolutions[evolution]['name'] == pokemon['name'] %}
+            disabledDexTile
+            {% endif %}"
+            width="96" height="96" alt="">
           <div class="LabelHolder">
             <div class="dexNumLabel">
               #{{"%03d" % evolutions[evolution]['dexnum']}}

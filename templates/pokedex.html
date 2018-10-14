@@ -9,55 +9,79 @@
     {% block typed_pokedex_info %}
     <h2>Pokédex</h2>
     <h3>This is the complete collection of all pokémon</h3>
-    <p>To make your life easier, use the filter below</p>
+    <p>To make your life easier, use the <span id="filterActivateButton" class="pointer"><strong>filter</strong></span></p>
 
-    <div class="sectionHolder filterSection">
+    <div class="sectionHolder filterSection
+      {% if filter_on == False %}
+      invisibleFilter
+      {% endif %}
+      " id="filterContainer">
+      <div class="upRightFloat pointer redText" id="filterDisableButton">DISABLE</div>
+      <br>
       <form action="/pokedex">
         <div class="flexContainer">
-          <label for="type_input">Type </label>
-          <select class="" name="type" id="type_selector">
-            {% for type in poketypes %}
-              <option value="{{type}}">{{type}}</option>
-            {% endfor %}
-          </select>
+          <div class="inputContainer flexContainer">
+            <div class="inputGroup">
+              <div class="inputDiv flexContainer">
+                <label for="type_input"><strong>Type</strong> </label>
+                <select class="" name="type" id="type_input">
+                  <option disabled selected value>Type</option>
+                  {% for type in poketypes %}
+                    <option value="{{type}}"
+                      {% if last_filter['type'] == type %}
+                        selected="selected"
+                      {% endif %}>{{type}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
           <br>
           <div class ="inputContainer flexContainer">
             <div class="inputGroup">
-              <div class="inputLabel flexContainer">Catch rate</div>
+              <div class="inputLabel flexContainer"><div><strong>Catch rate</strong></div></div>
               <div class = "inputDiv flexContainer">
-                <input id="min_catch_input" type="number" name="min_catch" value="" placeholder="0" min="0" max = "255"
+                <input id="min_catch_input" type="number" name="min_catch"
+                  value="{{last_filter['min_catch']}}" placeholder="0" min="0" max = "255"
                   onchange="document.getElementById('max_catch_input').min=this.value">
                   -
-                <input id="max_catch_input" type="number" name="max_catch" value="" placeholder="255" min="0" max="255"
+                <input id="max_catch_input" type="number" name="max_catch"
+                  value="{{last_filter['max_catch']}}" placeholder="255" min="0" max="255"
                   onchange="document.getElementById('min_catch_input').max=this.value">
               </div>
 
-              <div class="inputLabel flexContainer">Hatch Time</div>
+              <div class="inputLabel flexContainer"><div><strong>Hatch Time</strong> (steps)</div></div>
               <div class ="inputDiv flexContainer">
-                <input id="min_hatch_input" type="number" name="min_hatch" value="" placeholder="1.2 steps" min="1200" max = "32000"
+                <input id="min_hatch_input" type="number" name="min_hatch"
+                  value="{{last_filter['min_hatch']}}" placeholder="min 1.2k" min="1200" max = "32000"
                   onchange="document.getElementById('max_hatch_input').min=this.value">
                   -
-                <input id="max_hatch_input" type="number" name="max_hatch" value="" placeholder="32k steps" min="0" max="32000"
+                <input id="max_hatch_input" type="number" name="max_hatch"
+                  value="{{last_filter['max_hatch']}}" placeholder="max 32k" min="1200" max="32000"
                   onchange="document.getElementById('min_hatch_input').max=this.value">
               </div>
             </div>
 
             <div class="inputGroup">
-              <div class="inputLabel flexContainer">Weight</div>
+              <div class="inputLabel flexContainer"><div><strong>Weight</strong> (kg)</div></div>
               <div class="inputDiv flexContainer">
-                <input id="min_weight_input" type="number" name="min_weight" value="" placeholder="0kg" min="1200" max = "32000"
+                <input id="min_weight_input" type="number" name="min_weight"
+                  value="{{last_filter['min_weight']}}" placeholder="min 0" min="0" max = "500"
                   onchange="document.getElementById('max_weight_input').min=this.value">
                   -
-                <input id="max_weight_input" type="number" name="max_weight" value="" placeholder="500kg" min="0" max="32000"
+                <input id="max_weight_input" type="number" name="max_weight"
+                  value="{{last_filter['max_weight']}}" placeholder="max 500" min="0" max="500"
                   onchange="document.getElementById('min_weight_input').max=this.value">
               </div>
 
-              <div class="inputLabel flexContainer">Height</div>
+              <div class="inputLabel flexContainer"><div><strong>Height</strong> (m)</div></div>
               <div class="inputDiv flexContainer">
-                <input id="min_height_input" type="number" name="min_height" value="" placeholder="0m" min="1200" max = "32000"
+                <input id="min_height_input" type="number" name="min_height"
+                  value="{{last_filter['min_height']}}" placeholder="min 0" min="0" max = "10"
                   onchange="document.getElementById('max_height_input').min=this.value">
                   -
-                <input id="max_height_input" type="number" name="max_height" value="" placeholder="10m" min="0" max="32000"
+                <input id="max_height_input" type="number" name="max_height"
+                  value="{{last_filter['max_height']}}" placeholder="max 10" min="0" max="10"
                   onchange="document.getElementById('min_height_input').max=this.value">
               </div>
             </div>
@@ -94,4 +118,7 @@
     </div>
 
   </div>
+
+  <script src="{{url_for('static', filename='javascript/filter.js')}}"></script>
+
 {% endblock %}

@@ -118,6 +118,7 @@ body{
   width:240px;
 }
 .rightContainer{
+  position: relative;
   display: table-cell;
   vertical-align: middle;
   box-sizing: border-box;
@@ -170,6 +171,10 @@ img div.dexTile{
   margin-bottom: -20px;
 }
 
+.disabledDexTile{
+  filter: saturate(0%) brightness(20%);
+}
+
 .rightBarButton{
   margin: 10px 8px;
   box-sizing: border-box;
@@ -189,6 +194,7 @@ img div.dexTile{
 }
 
 .sectionHolder{
+  position: relative;
   background-color: rgba(255,255,255,0.6);
   border-radius: 20px;
 }
@@ -346,8 +352,16 @@ td:nth-of-type(6){
   margin-left: auto;
   margin-right: auto;
 }
-input{
-  /* float:right; */
+
+select{
+  background-color: white;
+  outline: none;
+  border: none;
+  width: 80px;
+  height: 23px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 5px;
 }
 input[type="number"]{
   width: 40%;
@@ -361,13 +375,20 @@ input[type="number"]{
 input[type="submit"]{
   width: 60px;
   height: 10px;
+  font-size: 30px;
+  font-weight: bold;
+}
 
+.invisibleFilter{
+  display: none;
 }
 
 
-.pokeNavigator{
-display: inline;
-float: right;
+
+
+.upRightFloat{
+position: absolute;
+right: 20px;
 }
 
 
@@ -413,6 +434,9 @@ h4{
   margin: 10px 0;
 }
 
+.redText{
+  color: rgb(175, 61, 69);
+}
 
 
 a{

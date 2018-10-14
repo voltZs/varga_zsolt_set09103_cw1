@@ -6,15 +6,6 @@ import random
 app = Flask(__name__)
 pokedata = PokeData()
 
-abcd = pokedata.getPokedex()
-times = []
-for abc in abcd:
-    times.append((abcd[abc]["height"]))
-
-times.sort()
-print(times)
-
-
 
 app.route('/force500')
 def force500():
@@ -38,15 +29,37 @@ def create_search_url():
 def search(search_word):
     return 'Search page. Searched word: {}'.format(search_word)
 
-@app.route('/pokedex')
-def red_pokedex():
-    return redirect("/pokemon")
-
 @app.route('/pokemon')
+def red_pokedex():
+    return redirect("/pokedex")
+
+@app.route('/pokedex')
 def pokedex():
-    data = pokedata.getPokedex()
+    dex_filter = {}
+    data = {}
+    filter_on = False
+    if request.args:
+        dex_filter = make_filter()
+        data = pokedata.getFilteredPokedex(dex_filter)
+        filter_on = True
+    else:
+        data = pokedata.getPokedex()
     typeslist = pokedata.getTypes()
-    return render_template('pokedex.html', pokemon_list = data, poketypes = typeslist)
+    print(dex_filter)
+    return render_template('pokedex.html', pokemon_list = data, poketypes = typeslist, last_filter= dex_filter, filter_on = filter_on)
+
+def make_filter():
+    dex_filter = {}
+    dex_filter['type'] = request.args.get('type')
+    dex_filter['min_catch'] = request.args.get('min_catch')
+    dex_filter['max_catch'] = request.args.get('max_catch')
+    dex_filter['min_hatch'] = request.args.get('min_hatch')
+    dex_filter['max_hatch'] = request.args.get('max_hatch')
+    dex_filter['min_weight'] = request.args.get('min_weight')
+    dex_filter['max_weight'] = request.args.get('max_weight')
+    dex_filter['min_height'] = request.args.get('min_height')
+    dex_filter['max_height'] = request.args.get('max_height')
+    return dex_filter
 
 
 @app.route('/pokemon/random')
@@ -107,7 +120,7 @@ def pokemovetype(type):
 @app.route('/moves/categories/<category>')
 def pokemovecategory(category):
     data = pokedata.getMovesOfCategory(category)
-    return render_template('categorised_moves.html', pokemoves= data, category = type)
+    return render_template('categorised_moves.html', pokemoves= data, category = category)
 
 
 # @app.route('/kanto')
