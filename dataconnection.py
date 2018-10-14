@@ -7,7 +7,6 @@ class PokeData():
 
     def numByName(self, name):
         data = self.getData("pokemons.json")
-        print(len(data))
         for item in data:
             if name.lower() == data[item]['name'].lower():
                 return data[item]["dexnum"]
@@ -75,8 +74,6 @@ class PokeData():
         min_height_bool = True
         if dex_filter['min_height']:
             if not pokemon['height'] >= float(dex_filt['min_height'])*100:
-                print("min_height at fault")
-                print(str(pokemon['height']) + " and " + str(float(dex_filt['min_height'])*100))
                 satisfies_criteria = False
 
         if dex_filter['max_height']:

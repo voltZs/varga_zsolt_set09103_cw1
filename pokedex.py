@@ -20,14 +20,14 @@ def force500():
 def index():
     return render_template('index.html')
 
-@app.route('/search')
-def create_search_url():
-    searched_phrase = request.args.get('search')
-    return redirect("/search/{}".format(searched_phrase))
-
-@app.route('/search/<search_word>')
-def search(search_word):
-    return 'Search page. Searched word: {}'.format(search_word)
+# @app.route('/search')
+# def create_search_url():
+#     searched_phrase = request.args.get('search')
+#     return redirect("/search/{}".format(searched_phrase))
+#
+# @app.route('/search/<search_word>')
+# def search(search_word):
+#     return 'Search page. Searched word: {}'.format(search_word)
 
 @app.route('/pokemon')
 def red_pokedex():
@@ -45,7 +45,6 @@ def pokedex():
     else:
         data = pokedata.getPokedex()
     typeslist = pokedata.getTypes()
-    print(dex_filter)
     return render_template('pokedex.html', pokemon_list = data, poketypes = typeslist, last_filter= dex_filter, filter_on = filter_on)
 
 def make_filter():
