@@ -98,6 +98,11 @@
         {% for pokemon in pokemon_list %}
         <a href="/pokemon/{{pokemon['name']}}">
           <div class="dexTile pointer">
+            <div class="TypeIndicatorContainer">
+              {% for type in pokemon['type'] %}
+                <div class="TypeIndicator {{type}}Type"></div>
+              {% endfor %}
+            </div>
             <img src="{{url_for('static', filename='sprites/{}.png'.format(pokemon['dexnum']))}}" width="96" height="96" alt="">
             <div class="LabelHolder">
               <div class="dexNumLabel">

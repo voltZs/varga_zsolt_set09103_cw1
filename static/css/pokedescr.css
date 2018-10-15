@@ -80,6 +80,8 @@ body{
 }
 
 .mainPage{
+  /* overflow: hidden; */
+  position: relative;
   padding: 10px 5px 10px 20px;
 }
 .rightBar{
@@ -164,6 +166,7 @@ body{
 }
 
 .dexTile{
+  position: relative;
   margin: 5px 10px;
 }
 
@@ -210,7 +213,7 @@ img div.dexTile{
   padding: 5px 0;
 }
 
-.LabelHolder:hover{
+div.LabelHolder.LabelHolderLit{
   background-color: rgba(255,255,255,1);
 }
 
@@ -255,62 +258,73 @@ img div.dexTile{
   color: white;
 }
 
-.TypeLabel.FireType{
+.FireType{
   background-color: rgb(184, 52, 27)
 }
-.TypeLabel.BugType{
+.BugType{
   background-color: rgb(13, 148, 48);
 }
-.TypeLabel.DarkType{
+.DarkType{
   background-color: rgb(60,46,36);
 }
-.TypeLabel.DragonType{
+.DragonType{
   background-color: rgb(105, 93, 199)
 }
-.TypeLabel.ElectricType{
+.ElectricType{
   background-color: rgb(219, 149, 53);
 }
-.TypeLabel.FairyType{
+.FairyType{
   background-color: rgb(214, 148, 221);
 }
-.TypeLabel.FightingType{
+.FightingType{
   background-color: rgb(115, 52, 34);
 }
-.TypeLabel.GhostType{
+.GhostType{
   background-color: rgb(68, 71, 143);
 }
-.TypeLabel.GroundType{
+.GroundType{
   background-color: rgb(184, 159, 92);
 }
-.TypeLabel.IceType{
+.IceType{
   background-color: rgb(138, 211, 241);
 }
-.TypeLabel.NormalType{
+.NormalType{
   background-color: rgb(181, 178, 169);
 }
-.TypeLabel.PsychicType{
+.PsychicType{
   background-color: rgb(205, 65, 102);
 }
-.TypeLabel.RockType{
+.RockType{
   background-color: rgb(155, 134, 71);
 }
-.TypeLabel.SteelType{
+.SteelType{
   background-color: rgb(143, 142, 157);
 }
-.TypeLabel.GrassType{
+.GrassType{
   background-color: rgb(73, 117, 45);
 }
-.TypeLabel.PoisonType{
+.PoisonType{
   background-color: rgb(85, 40, 89);
 }
-.TypeLabel.FlyingType{
+.FlyingType{
   background-color: rgb(97, 118, 205);
 }
-.TypeLabel.WaterType{
+.WaterType{
   background-color: rgb(43, 104,188);
 }
-
-
+.TypeIndicatorContainer{
+  position: absolute;
+  right: 3px;
+  bottom: 50px;
+}
+.TypeIndicator{
+  position: relative;
+  float: right;
+  width: 10px;
+  height: 10px;
+  margin-left: 1px;
+  border-radius: 5px;
+}
 
 table{
   width: 100%;

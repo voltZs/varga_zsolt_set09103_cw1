@@ -22,11 +22,10 @@ class PokeData():
 
     def getFilteredPokedex(self, dex_filter):
         dex = self.getPokedex()
-        filtered_dex = {}
-        for dexnum in dex:
-            pokemon = dex[dexnum]
+        filtered_dex = []
+        for pokemon in dex:
             if self.passesDexFilter(pokemon, dex_filter):
-                filtered_dex[dexnum] = dex[dexnum]
+                filtered_dex.append(pokemon)
         return filtered_dex
 
     def passesDexFilter(self, pokemon_obj, dex_filter):

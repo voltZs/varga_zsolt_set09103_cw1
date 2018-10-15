@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, abort
 from dataconnection import PokeData
 import random
 
@@ -9,11 +9,11 @@ pokedata = PokeData()
 
 app.route('/force500')
 def force500():
-    abort(500)
+    return abort(500)
 
 app.route('/force404')
 def force500():
-    abort(404)
+    return abort(404)
 
 # ROUTE HANDLING
 @app.route('/')
@@ -36,7 +36,7 @@ def red_pokedex():
 @app.route('/pokedex')
 def pokedex():
     dex_filter = {}
-    data = {}
+    data = []
     filter_on = False
     if request.args:
         dex_filter = make_filter()
@@ -60,6 +60,25 @@ def make_filter():
     dex_filter['max_height'] = request.args.get('max_height')
     return dex_filter
 
+@app.route('/pokedex/<passed_var>')
+def redir_to_pokemon(passed_var):
+    pokedex = pokedata.getPokedex()
+    passed_a_num = True;
+    try:
+        int(passed_var)
+    except ValueError:
+        passed_a_num = False
+
+    if passed_a_num and int(passed_var) in range(1,152) :
+        pokemon_name = pokedata.getPokeByNum(int(passed_var))['name']
+        print(pokemon_name)
+        return redirect("/pokemon/{}".format(pokemon_name))
+    else:
+        for pokemon in pokedex:
+            if pokemon['name'].lower() in str(passed_var).lower():
+                return redirect("/pokemon/{}".format(pokemon['name']))
+    return abort(404)
+
 
 @app.route('/pokemon/random')
 def random_pokemon():
@@ -71,7 +90,17 @@ def random_pokemon():
 
 @app.route('/pokemon/<name>')
 def pokemon(name):
-    dexnum = pokedata.numByName(name)
+    passed_a_num = True;
+    try:
+        int(name)
+    except ValueError:
+        passed_a_num = False
+
+    if passed_a_num and int(name) in range(1,152) :
+        return redirect("/pokemon/{}".format(pokedata.nameByNum(int(name))))
+    else:
+        dexnum = pokedata.numByName(name)
+
     if not dexnum:
         return render_template("err404.html", errorcode = 404)
     pokemon = pokedata.getPokeByNum(dexnum)

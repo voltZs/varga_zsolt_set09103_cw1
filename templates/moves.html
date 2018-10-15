@@ -10,53 +10,55 @@
     <h3>Below is a list of Pokémon moves available in Generation I.</h3>
     <p>Select a move to see which pokémon are able to learn it.</p>
 
-    <table id="itemsTable">
-      <tbody>
-        <tr>
-          <th>#</th>
-          <th>Move</th>
-          <th>Type</th>
-          <th>Category</th>
-          <th>PP</th>
-          <th>Accuracy</th>
-        </tr>
-        {% for move in pokemoves %}
+    <div class = "sectionHolder paddingBox">
+      <table id="itemsTable">
+        <tbody>
           <tr>
-            <td>
-              {{move['num']}}
-            </td>
-            <td >
-              <a href="/moves/{{move['name']}}">
-                <strong>{{move['name']}}</strong>
-              </a>
-            </td>
-            <td class="TypeLabel LabelHolder {{ '{}Type'.format(move['type'])}}">
-              <a href="moves/types/{{move['type']}}">
-                <span class="TypeText">
-                {{move['type']}}
-                </span>
-              </a>
-            </td>
-            <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(move['category'])}}">
-              <a href="moves/categories/{{move['category']}}">
-                <span class="TypeText">
-                  {{move['category']}}
-                </span>
-              </a>
-            </td>
-            <td>
-              {{move['pp']}}
-            </td>
-            <td>
-              {% if move['accuracy'] == None %}
-              N/A
-              {% else %}
-              {{move['accuracy']}}%
-              {% endif %}
-            </td>
+            <th>#</th>
+            <th>Move</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>PP</th>
+            <th>Accuracy</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+          {% for move in pokemoves %}
+            <tr>
+              <td>
+                {{move['num']}}
+              </td>
+              <td >
+                <a href="/moves/{{move['name']}}">
+                  <strong>{{move['name']}}</strong>
+                </a>
+              </td>
+              <td class="TypeLabel LabelHolder {{ '{}Type'.format(move['type'])}}">
+                <a href="moves/types/{{move['type']}}">
+                  <span class="TypeText">
+                  {{move['type']}}
+                  </span>
+                </a>
+              </td>
+              <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(move['category'])}}">
+                <a href="moves/categories/{{move['category']}}">
+                  <span class="TypeText">
+                    {{move['category']}}
+                  </span>
+                </a>
+              </td>
+              <td>
+                {{move['pp']}}
+              </td>
+              <td>
+                {% if move['accuracy'] == None %}
+                N/A
+                {% else %}
+                {{move['accuracy']}}%
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 {% endblock %}

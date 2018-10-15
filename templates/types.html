@@ -12,15 +12,17 @@
       Types are essentially kinds or groups of pokemon that usually have similar traits. These traits might include sharing attacks and abilities of the type, although many pokemon can learn moves that are not charcteristic for their type.
     </p>
     <p>Select a type to see which pokémon are able to learn it.</p>
-    <div class="flexContainerTypes">
-      {% for poketype in poketypes %}
-        <a href="/pokemon/types/{{poketype}}">
-          <span class="TypeSizeFix LabelHolder TypeLabel TypeText {{ '{}Type'.format(poketype) }}">
-            {{poketype}}
-          </span>
-        </a>
-        <br>
-      {% endfor %}
+    <div class="sectionHolder">
+      <div class="flexContainerTypes">
+        {% for poketype in poketypes %}
+          <a href="/pokemon/types/{{poketype}}">
+            <span class="TypeSizeFix LabelHolder TypeLabel TypeText {{ '{}Type'.format(poketype) }}">
+              {{poketype}}
+            </span>
+          </a>
+          <br>
+        {% endfor %}
+      </div>
     </div>
   </div>
 {% endblock %}
