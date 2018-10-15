@@ -71,7 +71,6 @@ def redir_to_pokemon(passed_var):
 
     if passed_a_num and int(passed_var) in range(1,152) :
         pokemon_name = pokedata.getPokeByNum(int(passed_var))['name']
-        print(pokemon_name)
         return redirect("/pokemon/{}".format(pokemon_name))
     else:
         for pokemon in pokedex:
@@ -118,9 +117,7 @@ def pokemon(name):
         prev_pokemon = pokedata.getPokeByNum(dexnum-1)
         next_pokemon = pokedata.getPokeByNum(dexnum+1)
     evolutions = pokedata.getEvolutionsOf(dexnum)
-    print(pokemon['moves'])
     moves = pokedata.fillMovesArray(pokemon['moves'])
-    print(moves)
     return render_template('pokepage.html', pokemon = pokemon, prev_pokemon = prev_pokemon, next_pokemon = next_pokemon, evolutions = evolutions, moves = moves)
     # return "<img src='/static/images/{}' >".format(img)
 
