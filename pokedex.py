@@ -90,6 +90,7 @@ def random_pokemon():
 
 @app.route('/pokemon/<name>')
 def pokemon(name):
+    # Check if the name variable is a number, if yes > redirect
     passed_a_num = True;
     try:
         int(name)
@@ -101,8 +102,11 @@ def pokemon(name):
     else:
         dexnum = pokedata.numByName(name)
 
+    #if the dexnum is not set to a valid dexnum throw 404
     if not dexnum:
         return render_template("err404.html", errorcode = 404)
+
+    # logic for getting next and previous pokemon
     pokemon = pokedata.getPokeByNum(dexnum)
     if dexnum == 1:
         prev_pokemon = {}
@@ -114,7 +118,10 @@ def pokemon(name):
         prev_pokemon = pokedata.getPokeByNum(dexnum-1)
         next_pokemon = pokedata.getPokeByNum(dexnum+1)
     evolutions = pokedata.getEvolutionsOf(dexnum)
-    return render_template('pokepage.html', pokemon = pokemon, prev_pokemon = prev_pokemon, next_pokemon = next_pokemon, evolutions = evolutions)
+    print(pokemon['moves'])
+    moves = pokedata.fillMovesArray(pokemon['moves'])
+    print(moves)
+    return render_template('pokepage.html', pokemon = pokemon, prev_pokemon = prev_pokemon, next_pokemon = next_pokemon, evolutions = evolutions, moves = moves)
     # return "<img src='/static/images/{}' >".format(img)
 
 @app.route('/pokemon/types')

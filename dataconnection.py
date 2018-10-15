@@ -121,6 +121,15 @@ class PokeData():
                 return item
         return None
 
+    def fillMovesArray(self, moves_array):
+        moves = moves_array;
+        new_moves_array = []
+        all_moves = self.getMoves()
+        for move in all_moves:
+            if move['name'] in moves:
+                new_moves_array.append(move)
+        return new_moves_array
+
 
     def getMovesOfType(self, type):
         data = self.getMoves()
