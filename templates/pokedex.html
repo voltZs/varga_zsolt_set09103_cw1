@@ -95,16 +95,16 @@
 
     <div class="flexContainer">
       {% if pokemon_list %}
-        {% for dex_number in pokemon_list %}
-        <a href="/pokemon/{{pokemon_list[dex_number]['name']}}">
+        {% for pokemon in pokemon_list %}
+        <a href="/pokemon/{{pokemon['name']}}">
           <div class="dexTile pointer">
-            <img src="{{url_for('static', filename='sprites/{}.png'.format(dex_number))}}" width="96" height="96" alt="">
+            <img src="{{url_for('static', filename='sprites/{}.png'.format(pokemon['dexnum']))}}" width="96" height="96" alt="">
             <div class="LabelHolder">
               <div class="dexNumLabel">
-                #{{"%03d" % pokemon_list[dex_number]['dexnum']}}
+                #{{"%03d" % pokemon['dexnum']}}
               </div>
               <div class="dexNameLabel">
-                {{pokemon_list[dex_number]['name']}}
+                {{pokemon['name']}}
               </div>
             </div>
 

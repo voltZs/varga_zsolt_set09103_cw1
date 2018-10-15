@@ -2,26 +2,22 @@ import json
 
 class PokeData():
     def __len__(self):
-        data = self.getData("pokemons.json")
+        data = self.getPokedex()
         return len(data)
 
     def numByName(self, name):
-        data = self.getData("pokemons.json")
+        data = self.getPokedex()
         for item in data:
-            if name.lower() == data[item]['name'].lower():
-                return data[item]["dexnum"]
+            if name.lower() == item['name'].lower():
+                return item["dexnum"]
 
-
-    def getPokedex(self):
-        data = self.getData("pokemons.json")
-        return data
 
     def getPokedexOfType(self, type):
-        data = self.getData("pokemons.json")
-        data_of_type = {}
+        data = self.getPokedex()
+        data_of_type = []
         for item in data:
-            if type in data[item]['type'] :
-                data_of_type[item]=data[item]
+            if type in item['type'] :
+                data_of_type.append(item)
         return data_of_type
 
     def getFilteredPokedex(self, dex_filter):
@@ -85,73 +81,77 @@ class PokeData():
 
 
     def getEvolutionsOf(self, num):
-        data = self.getData("pokemons.json")
-        evolutions = {}
-        for evolution in self.evolByNum(num):
+        data = self.getPokedex()
+        evolutions = []
+        for evolution in self.attributeByNum("evolutions", num):
             for item in data:
-                if evolution == data[item]['name']:
-                    evolutions[item] = data[item]
+                if evolution == item['name']:
+                    evolutions.append(item)
         return evolutions
 
     def getPokeByNum(self,num):
-        data = self.getData("pokemons.json")
-        return data[str(num)]
+        data = self.getPokedex()
+        poke = {}
+        for item in data:
+            if item['dexnum'] == num:
+                poke = item
+        return poke
 
     def nameByNum(self, num):
         return self.attributeByNum("name", num)
 
-    def evolByNum(self, num):
-        return self.attributeByNum("evolutions", num)
-
     def attributeByNum(self, attribute, num):
-        data = self.getData("pokemons.json")
-        return data[str(num)][attribute]
+        data = self.getPokedex()
+        poke = self.getPokeByNum(num)
+        value = poke[attribute]
+        return value
 
 
     def getPokedexOfMove(self, move):
         dex = self.getPokedex();
-        altered_dex = {}
+        altered_dex = []
         for pokemon in dex:
-            if move in dex[pokemon]['moves']:
-                altered_dex[pokemon]= dex[pokemon]
+            if move in pokemon['moves']:
+                altered_dex.append(pokemon)
         return altered_dex
 
     def getMove(self, move):
-        moves = self.getData("moves.json")
-        for index in moves:
-            if moves[index]['name'] == move:
-                return moves[index]
-
+        moves = self.getMoves()
+        for item in moves:
+            if item['name'] == move:
+                return item
         return None
 
-    def getMoves(self):
-        data = self.getData("moves.json")
-        return data
 
     def getMovesOfType(self, type):
-        data = self.getData("moves.json")
-        data_of_type = {}
+        data = self.getMoves()
+        data_of_type = []
         for item in data:
-            if type in data[item]['type'] :
-                data_of_type[item]=data[item]
+            if type in item['type'] :
+                data_of_type.append(item)
         return data_of_type
 
     def getMovesOfCategory(self, category):
-        data = self.getData("moves.json")
-        data_of_category = {}
+        data = self.getMoves()
+        data_of_category = []
         for item in data:
-            if category in data[item]['category'] :
-                data_of_category[item]=data[item]
+            if category in item['category'] :
+                data_of_category.append(item)
         return data_of_category
 
+
+
+    def getPokedex(self):
+        data = self.getData("pokemons_updated.json")
+        return data
 
     def getTypes(self):
         types = self.getData("poketypes.json")
         return types
 
-
-
-
+    def getMoves(self):
+        data = self.getData("moves_updated.json")
+        return data
 
     def getData(self, filename):
         with open(filename, "r") as read_file:

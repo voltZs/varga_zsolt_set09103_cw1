@@ -50,19 +50,19 @@
     <h2>Evolutions</h2>
     <div class="flexContainer">
       {% for evolution in evolutions %}
-      <a href="/pokemon/{{evolutions[evolution]['name']}}">
+      <a href="/pokemon/{{evolution['name']}}">
         <div class="dexTile pointer">
-          <img src="{{url_for('static', filename='sprites/{}.png'.format(evolutions[evolution]['dexnum']))}}"
-            class="{% if not evolutions[evolution]['name'] == pokemon['name'] %}
+          <img src="{{url_for('static', filename='sprites/{}.png'.format(evolution['dexnum']))}}"
+            class="{% if not evolution['name'] == pokemon['name'] %}
             disabledDexTile
             {% endif %}"
             width="96" height="96" alt="">
           <div class="LabelHolder">
             <div class="dexNumLabel">
-              #{{"%03d" % evolutions[evolution]['dexnum']}}
+              #{{"%03d" % evolution['dexnum']}}
             </div>
             <div class="dexNameLabel">
-              {{evolutions[evolution]['name']}}
+              {{evolution['name']}}
             </div>
           </div>
 

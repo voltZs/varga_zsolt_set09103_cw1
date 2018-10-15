@@ -20,38 +20,38 @@
           <th>PP</th>
           <th>Accuracy</th>
         </tr>
-        {% for num in pokemoves %}
+        {% for move in pokemoves %}
           <tr>
             <td>
-              {{num}}
+              {{move['num']}}
             </td>
             <td >
-              <a href="/moves/{{pokemoves[num]['name']}}">
-                <strong>{{pokemoves[num]['name']}}</strong>
+              <a href="/moves/{{move['name']}}">
+                <strong>{{move['name']}}</strong>
               </a>
             </td>
-            <td class="TypeLabel LabelHolder {{ '{}Type'.format(pokemoves[num]['type'])}}">
-              <a href="moves/types/{{pokemoves[num]['type']}}">
+            <td class="TypeLabel LabelHolder {{ '{}Type'.format(move['type'])}}">
+              <a href="moves/types/{{move['type']}}">
                 <span class="TypeText">
-                {{pokemoves[num]['type']}}
+                {{move['type']}}
                 </span>
               </a>
             </td>
-            <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(pokemoves[num]['category'])}}">
-              <a href="moves/categories/{{pokemoves[num]['category']}}">
+            <td class="MoveLabel LabelHolder TypeText MoveCategoryLabel {{'{}MoveCategory'.format(move['category'])}}">
+              <a href="moves/categories/{{move['category']}}">
                 <span class="TypeText">
-                  {{pokemoves[num]['category']}}
+                  {{move['category']}}
                 </span>
               </a>
             </td>
             <td>
-              {{pokemoves[num]['pp']}}
+              {{move['pp']}}
             </td>
             <td>
-              {% if pokemoves[num]['accuracy'] == None %}
+              {% if move['accuracy'] == None %}
               N/A
               {% else %}
-              {{pokemoves[num]['accuracy']}}%
+              {{move['accuracy']}}%
               {% endif %}
             </td>
           </tr>
