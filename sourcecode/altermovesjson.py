@@ -5,7 +5,7 @@ with open("moves.json", "r") as read_file:
 
 new_moveslist = []
 
-for move in range(1,152):
+for move in range(1,166):
     move_obj = {}
     move = str(move)
     move_obj["num"] = move

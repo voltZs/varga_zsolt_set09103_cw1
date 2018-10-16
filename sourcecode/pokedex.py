@@ -142,16 +142,22 @@ def pokemoves():
 def pokemove(move):
     data = pokedata.getPokedexOfMove(move)
     move_obj = pokedata.getMove(move)
+    if not move_obj:
+        return abort(404)
     return render_template("moves_pokedex.html", pokemon_list = data, move = move_obj)
 
 @app.route('/moves/types/<type>')
 def pokemovetype(type):
     data = pokedata.getMovesOfType(type)
+    if not data:
+        return abort(404)
     return render_template('typed_moves.html', pokemoves= data, type = type)
 
 @app.route('/moves/categories/<category>')
 def pokemovecategory(category):
     data = pokedata.getMovesOfCategory(category)
+    if not data:
+        return abort(404)
     return render_template('categorised_moves.html', pokemoves= data, category = category)
 
 
