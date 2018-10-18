@@ -150,7 +150,7 @@ class PokeData():
 
 
     def getPokedex(self):
-        data = self.getData("pokemons_updated.json")
+        data = self.getData("pokemons.json")
         return data
 
     def getTypes(self):
@@ -158,7 +158,7 @@ class PokeData():
         return types
 
     def getMoves(self):
-        data = self.getData("moves_updated.json")
+        data = self.getData("moves.json")
         return data
 
     def getData(self, filename):
